@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     
 
     [Header("Movement Settings")]
+    [SerializeField] private KeyCode _movementKey;
     [SerializeField] private float _movementSpeed;
 
     private float _horizontalInput, _verticalInput;
@@ -21,16 +22,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpCooldown;
     [SerializeField] private bool _canJump;
 
+    [Header("Sliding Settings")]
+    [SerializeField] private KeyCode _slideKey;
+    [SerializeField] private float _slideMultiplayer;
+    [SerializeField] private float _slideDrag;
+
+    private bool _isSliding;
+
+
 
     [Header("Ground Check Settings")]
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private float _groundDrag;
      
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
+        _rigidbody.linearDamping = _groundDrag;
     }
 
     private void Update()
@@ -48,7 +59,17 @@ public class PlayerController : MonoBehaviour
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(_jumpKey) && _canJump && IsGrounded())
+        if (Input.GetKeyDown(_slideKey))
+        {
+            _isSliding = true;
+            _rigidbody.linearDamping = _slideDrag;
+        }
+        else if (Input.GetKeyDown(_movementKey))
+        {
+            _isSliding = false;
+            _rigidbody.linearDamping = _groundDrag;
+        }
+        else if (Input.GetKeyDown(_jumpKey) && _canJump && IsGrounded())
         {
             _canJump = false;
             SetPlayerJump();
@@ -60,8 +81,14 @@ public class PlayerController : MonoBehaviour
     {
         _movementDirection = (_orientation.forward * _verticalInput 
             + _orientation.right * _horizontalInput).normalized;
-        
-        _rigidbody.AddForce(_movementDirection * _movementSpeed, ForceMode.Force);
+        if (_isSliding)
+        {
+            _rigidbody.AddForce(_movementDirection * _movementSpeed * _slideMultiplayer, ForceMode.Force);
+        }
+        else
+        {
+            _rigidbody.AddForce(_movementDirection * _movementSpeed, ForceMode.Force);
+        } 
     }
 
     private void SetPlayerJump()
