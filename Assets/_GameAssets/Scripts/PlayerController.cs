@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Sliding Settings")]
     [SerializeField] private KeyCode _slideKey;
-    [SerializeField] private float _slideMultiplayer;
+    [SerializeField] private float _slideMultiplier;
     [SerializeField] private float _slideDrag;
 
     private bool _isSliding;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             + _orientation.right * _horizontalInput).normalized;
         if (_isSliding)
         {
-            _rigidbody.AddForce(_movementDirection * _movementSpeed * _slideMultiplayer, ForceMode.Force);
+            _rigidbody.AddForce(_movementDirection * _movementSpeed * _slideMultiplier, ForceMode.Force);
         }
         else
         {
@@ -94,10 +94,12 @@ public class PlayerController : MonoBehaviour
 
     private void LimitPlayerSpeed()
     {
+        float currentSpeedLimit = _isSliding ? _movementSpeed * _slideMultiplier : _movementSpeed;
         Vector3 flatVelocity = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
-        if(flatVelocity.magnitude > _movementSpeed)
+
+        if(flatVelocity.magnitude > currentSpeedLimit)
         {
-            Vector3 limitedVelocity = flatVelocity.normalized * _movementSpeed;
+            Vector3 limitedVelocity = flatVelocity.normalized * currentSpeedLimit;
             _rigidbody.linearVelocity = new Vector3(limitedVelocity.x, _rigidbody.linearVelocity.y,limitedVelocity.z);
         }
     }
