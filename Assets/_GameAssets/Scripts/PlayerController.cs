@@ -88,7 +88,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             _rigidbody.AddForce(_movementDirection * _movementSpeed, ForceMode.Force);
-        } 
+        }
+        LimitPlayerSpeed();
+    }
+
+    private void LimitPlayerSpeed()
+    {
+        Vector3 flatVelocity = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
+        if(flatVelocity.magnitude > _movementSpeed)
+        {
+            Vector3 limitedVelocity = flatVelocity.normalized * _movementSpeed;
+            _rigidbody.linearVelocity = new Vector3(limitedVelocity.x, _rigidbody.linearVelocity.y,limitedVelocity.z);
+        }
     }
 
     private void SetPlayerJump()

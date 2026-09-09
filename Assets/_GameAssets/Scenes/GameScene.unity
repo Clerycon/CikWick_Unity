@@ -1116,8 +1116,8 @@ MonoBehaviour:
   _jumpCooldown: 0.5
   _canJump: 1
   _slideKey: 113
-  _slideMultiplayer: 1.5
-  _slideDrag: 2
+  _slideMultiplayer: 2
+  _slideDrag: 3
   _playerHeight: 1
   _groundLayer:
     serializedVersion: 2
