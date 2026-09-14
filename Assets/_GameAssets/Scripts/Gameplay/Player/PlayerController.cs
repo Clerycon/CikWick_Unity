@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private float _horizontalInput, _verticalInput;
     private Vector3 _movementDirection;
+    private float _defaultMovementSpeed;
 
 
     [Header("Jump Settings")]
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _canJump;
     [SerializeField] private float _airMultiplier;
     [SerializeField] private float _airDrag;
+    private float _defaultJumpForce;
 
     [Header("Sliding Settings")]
     [SerializeField] private KeyCode _slideKey;
@@ -49,6 +51,9 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.freezeRotation = true;
         _rigidbody.linearDamping = _groundDrag;
+
+        _defaultMovementSpeed = _movementSpeed;
+        _defaultJumpForce = _jumpForce;
     }
 
     private void Update()
@@ -158,5 +163,27 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _groundLayer);
+    }
+    
+    public void SetMovementSpeed(float speed, float duration)
+    {
+        _movementSpeed += speed;
+        Invoke(nameof(ResetMovementSpeed),duration);
+    }
+
+    public void SetJumpForce(float force, float duration)
+    {
+        _jumpForce += force;
+        Invoke(nameof(ResetJumpForce),duration);
+    }
+
+    private void ResetMovementSpeed()
+    {
+        _movementSpeed = _defaultMovementSpeed;
+    }
+
+    private void ResetJumpForce()
+    {
+        _jumpForce = _defaultJumpForce;
     }
 }
