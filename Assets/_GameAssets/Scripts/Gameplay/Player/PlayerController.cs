@@ -186,4 +186,9 @@ public class PlayerController : MonoBehaviour
     {
         _jumpForce = _defaultJumpForce;
     }
+
+    public Rigidbody GetPlayerRigidbody()
+    {
+        return _rigidbody;
+    }
 }
