@@ -1,17 +1,26 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public event Action<EGameState> OnGameStateChanged;
 
     [SerializeField] private EggCounterUI _eggCounterUI;
     
     [SerializeField] private int _maxEggCount = 5;
     private int _currentEggCount;
 
+    private EGameState _currentGameState;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        ChangeGameState(EGameState.Play);
     }
 
     public void OnEggCollected()
@@ -23,9 +32,20 @@ public class GameManager : MonoBehaviour
         if(_currentEggCount == _maxEggCount)
         {
             _eggCounterUI.SetEggCompleted();
-        }
+            GameManager.Instance.ChangeGameState(EGameState.GameOver);
+        }        
+    }
 
-        
+    public void ChangeGameState(EGameState gameState)
+    {
+        OnGameStateChanged?.Invoke(gameState);
+        _currentGameState = gameState;
+        Debug.Log("Game State: " + gameState);
+    }
+
+    public EGameState GetCurrentGameState()
+    {
+        return _currentGameState;
     }
 }
 

@@ -8,6 +8,3 @@ public enum EPlayerState
     SlideIdle,
     Slide
 }
-
-
-
