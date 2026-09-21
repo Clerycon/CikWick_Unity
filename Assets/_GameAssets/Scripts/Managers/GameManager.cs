@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         if(_currentEggCount == _maxEggCount)
         {
             _eggCounterUI.SetEggCompleted();
-            GameManager.Instance.ChangeGameState(EGameState.GameOver);
+            ChangeGameState(EGameState.GameOver);
         }        
     }
 
