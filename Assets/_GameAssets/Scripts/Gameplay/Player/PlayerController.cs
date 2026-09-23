@@ -205,4 +205,20 @@ public class PlayerController : MonoBehaviour
     {
         return _rigidbody;
     }
+
+    public bool CanCatChase()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _playerHeight * 0.5f + 0.2f, _groundLayer))
+        {
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Floor"))
+            {
+                return true;
+            }
+            else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                return false;
+            }
+        }
+        return false;
+    }
 }

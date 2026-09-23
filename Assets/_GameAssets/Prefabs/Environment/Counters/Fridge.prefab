@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6298855216478465349}
   - component: {fileID: 3879509345536443665}
   - component: {fileID: 8995056816010231006}
+  - component: {fileID: 5373116796538825205}
   m_Layer: 6
   m_Name: FrideDoorTop
   m_TagString: Untagged
@@ -90,6 +91,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &5373116796538825205
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982309700958163034}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5, y: 2.5, z: 1.8500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 4.25, y: 0.5, z: 1.8500001}
+  m_TimeToStationary: 0.5
 --- !u!1 &7173337680396650124
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +119,7 @@ GameObject:
   - component: {fileID: 601871919622419251}
   - component: {fileID: 1699353241999260004}
   - component: {fileID: 1407885720411607354}
+  - component: {fileID: 3576340580764908125}
   m_Layer: 6
   m_Name: Fridge
   m_TagString: Untagged
@@ -204,6 +222,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 12.5, z: 10.017134}
   m_Center: {x: -2.5751508e-15, y: 6.25, z: 0.008565903}
+--- !u!208 &3576340580764908125
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7173337680396650124}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5, y: 6.2500005, z: 3.7730002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 6.2500005, z: -1.2270001}
+  m_TimeToStationary: 0.5
 --- !u!1 &8898139559837538174
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +249,7 @@ GameObject:
   - component: {fileID: 3808354223595482907}
   - component: {fileID: 4319378206718738431}
   - component: {fileID: 8486362619374864578}
+  - component: {fileID: 6171000267405877164}
   m_Layer: 6
   m_Name: FridgeDoorBot
   m_TagString: Untagged
@@ -294,3 +329,19 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6171000267405877164
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8898139559837538174}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5, y: 3.7500002, z: 1.8500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 4.25, y: -0.25, z: 1.8500001}
+  m_TimeToStationary: 0.5
