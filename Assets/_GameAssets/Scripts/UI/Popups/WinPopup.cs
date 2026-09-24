@@ -20,6 +20,6 @@ public class WinPopup : MonoBehaviour
 
     private void OnOneMoreButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
 }

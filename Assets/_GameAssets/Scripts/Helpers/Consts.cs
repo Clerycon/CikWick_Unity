@@ -24,5 +24,11 @@ public class Consts
         public const string ROTTEN_WHEAT = "RottenWheat";
     }
 
+    public struct SceneNames
+    {
+        public const string MENU_SCENE = "MenuScene";
+        public const string GAME_SCENE = "GameScene";
+    }
+
     
 }

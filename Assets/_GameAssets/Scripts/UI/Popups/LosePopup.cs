@@ -20,6 +20,6 @@ public class LosePopup : MonoBehaviour
 
     private void OnTryAgainButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
     }
 }
